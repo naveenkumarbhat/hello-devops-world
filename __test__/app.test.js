@@ -1,9 +1,16 @@
 const request = require('supertest');
-const server = require('../index'); // Import the server instance
+const app = require('../index');
+
+// Close the server after running the tests
+afterAll(async () => {
+  await new Promise(resolve => setTimeout(() => {
+    resolve();
+  }, 1000)); // Wait for 1 second to allow pending requests to complete
+  app.close(); // Close the server
+});
 
 test('GET / responds with "Hello, World!"', async () => {
-  const response = await request(server).get('/'); // Use server instance instead of app
+  const response = await request(app).get('/');
   expect(response.status).toBe(200);
   expect(response.text).toBe('Hello, World!');
 });
- 
