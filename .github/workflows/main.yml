@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Node.js CI and ESLint
 
 on:
   push:
@@ -23,17 +23,9 @@ jobs:
 
       - name: Run tests
         run: npm test
----
-name: ESLint
 
-on:
-  push:
-    branches:
-      - main
-
-jobs:
   eslint:
-    runs-on:ubuntu-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
@@ -48,4 +40,4 @@ jobs:
         run: npm install
 
       - name: Run ESLint
-        run: npx esLint
+        run: npx eslint .
