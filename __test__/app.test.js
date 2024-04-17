@@ -6,3 +6,4 @@ test('GET / responds with "Hello, World!"', async () => {
   expect(response.status).toBe(200);
   expect(response.text).toBe('Hello, World!');
 });
+ 
